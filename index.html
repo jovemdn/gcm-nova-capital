@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCM - Nova Capital</title>
+  <meta name="description" content="Guarda Civil Metropolitana - Nova Capital. Segurança, disciplina e compromisso com o cidadão.">
+  <link rel="icon" href="imagens/logo gcm.png" type="image/png">
+
+  <!-- Fonte moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======= ANIMAÇÕES ======= */
+    @keyframes brilho {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+
+    @keyframes flutuar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes reflexo {
+      0% { background-position: -100%; }
+      100% { background-position: 200%; }
+    }
+
+    @keyframes fundoPulsante {
+      0%, 100% { background-position: 0% 50%; filter: brightness(1); }
+      50% { background-position: 100% 50%; filter: brightness(1.1); }
+    }
+
+    /* ======= ANIMAÇÃO DE SIRENE ======= */
+    @keyframes sirene {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* ======= FUNDO ======= */
+    body {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(180deg, #001f5f, #007bff, #001f5f);
+      background-size: 200% 200%;
+      margin: 0;
+      padding: 40px 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      animation: fundoPulsante 10s ease-in-out infinite, fadeIn 1s ease forwards;
+    }
+
+    /* ======= FAIXA DE SIRENE ======= */
+    .faixa-sirene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(255,0,0,0.8), rgba(0,0,255,0.8), rgba(255,0,0,0.8));
+      background-size: 200% 100%;
+      animation: sirene 2s linear infinite;
+      box-shadow: 0 0 15px rgba(255,255,255,0.4);
+      z-index: 9999;
+    }
+
+    p {
+      color: #f0f0f0;
+    }
+
+    .titulo-brilho {
+      position: relative;
+      display: inline-block;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+      font-size: 2.2em;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff 0%, #e5ff00 40%, #ffffff 60%);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: reflexo 5s linear infinite, fadeIn 1s ease forwards 1.2s;
+    }
+
+    .meu-botao {
+      background: linear-gradient(90deg, #ff4500, #ff7300, #ff4500);
+      color: white;
+      padding: 12px 30px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      background-size: 200%;
+      animation: brilho 3s linear infinite, flutuar 2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    }
+
+    .meu-botao:hover {
+      box-shadow: 0 0 20px rgba(255, 115, 0, 0.8);
+      transform: scale(1.05);
+    }
+
+    .topo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-top: 20px;
+    }
+
+    .logo {
+      width: 150px;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeIn 1s ease forwards;
+      transition: filter 0.5s, transform 0.5s;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 15px #00c3ff);
+      transform: scale(1.05);
+    }
+
+    .discord-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .discord-link img {
+      width: 70px;
+      transition: transform 0.3s, filter 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.2s ease forwards 0.3s;
+    }
+
+    .discord-link img:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 10px #7289da);
+    }
+
+    .apresentacao {
+      max-width: 700px;
+      margin: 60px auto;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards 1.6s;
+    }
+
+    .apresentacao h2 {
+      color: #e5ff00;
+      margin-bottom: 10px;
+    }
+
+    .prova {
+      margin-top: 50px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards 2.3s;
+    }
+
+    .prova-conteudo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .prova img {
+      width: 140px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .prova img:hover {
+      transform: scale(1.05);
+    }
+
+    .galeria {
+      margin-top: 80px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards 2.8s;
+    }
+
+    .galeria img {
+      width: 180px;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 14px;
+      opacity: 0.8;
+      color: #f0f0f0;
+      animation: fadeUp 1s ease forwards 3.2s;
+    }
+
+    @media (max-width: 600px) {
+      .topo {
+        flex-direction: column;
+      }
+      .logo {
+        width: 120px;
+      }
+      .discord-link img {
+        width: 60px;
+      }
+      .apresentacao {
+        margin: 30px 10px;
+        padding: 20px;
+      }
+      .prova img {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- FAIXA DE SIRENE -->
+  <div class="faixa-sirene"></div>
+
+  <!-- TOPO -->
+  <div class="topo">
+    <img src="imagens/logo gcm.png" alt="Logotipo oficial da Guarda Civil Metropolitana de Nova Capital" class="logo">
+
+    <div class="discord-area">
+      <a href="https://discord.gg/txcNff45FZ" target="_blank" class="discord-link">
+        <img src="imagens/vecteezy_discord-logo-png-discord-icon-transparent-png_18930604.png" alt="Acesse nosso Discord">
+      </a>
+    </div>
+  </div>
+
+  <h1 class="titulo-brilho">Guarda Civil Metropolitana</h1>
+
+  <div class="apresentacao">
+    <h2>Sobre a GCM - Nova Capital</h2>
+    <p>
+      A Guarda Civil Metropolitana de Nova Capital tem como missão principal proteger o cidadão,
+      garantir a ordem pública e contribuir para uma cidade mais segura e organizada.  
+      Nossos agentes atuam com dedicação, respeito e comprometimento, representando a força e a
+      disciplina da segurança pública municipal.
+    </p>
+    <p>
+      Trabalhamos em conjunto com as demais forças de segurança, prezando sempre pela ética,
+      profissionalismo e espírito de equipe.  
+      Nossa prioridade é servir e proteger cada morador da cidade com responsabilidade e coragem.
+    </p>
+  </div>
+
+  <div class="prova">
+    <div class="prova-conteudo">
+      <a href="https://forms.gle/G8FGst56XnFjB4WM7" target="_blank">
+        <button class="meu-botao">Acessar Prova</button>
+      </a>
+      <img src="imagens/formulário gcm.png" alt="Formulário de inscrição GCM">
+    </div>
+  </div>
+
+  <div class="galeria">
+    <img src="imagens/logo gcm.png" alt="Logo adicional da Guarda Civil Metropolitana">
+  </div>
+
+  <footer>
+    © 2025 Guarda Civil Metropolitana - Nova Capital | Todos os direitos reservados
+  </footer>
+
+</body>
+</html>
+
+
+
+
+
